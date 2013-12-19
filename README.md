@@ -1,7 +1,7 @@
 PyDumpy
 =======
 
-This is a clone of https://code.google.com/p/pydumpy/source/browse/trunk/src/pydumpy.py
+This is a clone of https://code.google.com/p/pydumpy/source/browse/trunk/src/pydumpy.py, authored by https://github.com/z1lv1n4s. Also see http://www.thedeveloperday.com/pydumpy-partial-sorted-mysql-database-dumps/
 
 PyDumpy is a simple tool written in Python that enables easy partial and sorted MySQL database dumping. PyDumpy is perfect when a quick production database snapshot is required with only partial data. Production databases may have hundreds of gigabytes of data which is not always easy or fast to dump and deploy on a development machine.
 
@@ -61,5 +61,5 @@ By default PyDumpy will output to standard output. It's possible to redirect all
 Contact
 -------
 
-Contact the original author at https://code.google.com/p/pydumpy/
+Contact the original author (z1lv1n4s - https://github.com/z1lv1n4s) at https://code.google.com/p/pydumpy/ or via his blog: http://www.thedeveloperday.com
 

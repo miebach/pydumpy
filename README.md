@@ -22,8 +22,11 @@ Dependencies
 
 PyDumpy relies on MySQL for Python package to connect to mysql and query the information schema. To install the package using pip:
 
-    $ pip install pymysql
+    $ pip install MySQL-python
 
+If it complains about a missing mysql_config, on Debian or Ubuntu run:
+
+    $ apt-get install libmysqlclient-dev
 
 Or on Debian or Ubuntu you might just use the package from the linux distribution:
 

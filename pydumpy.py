@@ -22,6 +22,7 @@ def getCommandLineOptions():
     parser.add_option("-p", "--password", dest = "password", help = "Database password.", default = False)
     parser.add_option("-n", "--name", dest = "dbname", help = "Database name.", default = False)
     parser.add_option("-e", "--options", dest = "flags", help = "Additional mysqldump options.", default = "")
+    parser.add_option("-D", "--dump-date", dest = "dump_date", help = "Add date of dump the comment. Makes it harder to find real differences.", default =False)
     parser.add_option("-f", "--file", dest = "file", help = "File to dump to.", default = "")
     parser.add_option("-r", "--limit", type="int", dest = "rows", help = "Max number of rows per table. Default 100000.", default = 100000)
     parser.add_option("-l", "--ask-to-limit", action="store_true", dest = "askToLimit", help = "Ask to provide a row limit for each table. Default false.", default = False)
@@ -45,6 +46,12 @@ def getCommandLineOptions():
         
     if options.dbname == False:
         parser.error('Use -n or --name to specify database name');
+
+    if options.dump_date:
+      options.flags = options.flags + " " + "--dump-date"
+    else:
+      # see https://bugs.mysql.com/bug.php?id=31077
+      options.flags = options.flags + " " + "--skip-dump-date"
         
     return options
 
@@ -183,6 +190,7 @@ def getTableLimits(options, tables, columns):
     return limits;
 
 def getTableDumpCommand(options, limits, table):
+
     mainDumpCmd = "mysqldump -h" + options.hostname + " --port=" + str(options.port) + " -u" + options.username + " -p" + options.password + " " + options.dbname + " " + options.flags
     
     (tableName, estimatedRows) = table

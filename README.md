@@ -1,7 +1,7 @@
 PyDumpy
 =======
 
-This is a clone of version r16 at https://code.google.com/p/pydumpy/source/browse/trunk/src/pydumpy.py, authored by https://github.com/z1lv1n4s. Also see http://www.thedeveloperday.com/pydumpy-partial-sorted-mysql-database-dumps/
+This is a clone of version r16 at https://code.google.com/p/pydumpy/source/browse/trunk/src/pydumpy.py, authored by https://github.com/z1lv1n4s. 
 
 PyDumpy is a simple tool written in Python that enables easy partial and sorted MySQL database dumping. PyDumpy is perfect when a quick production database snapshot is required with only partial data. Production databases may have hundreds of gigabytes of data which is not always easy or fast to dump and deploy on a development machine.
 
@@ -17,12 +17,22 @@ Getting Started
 
 PyDumpy should work with Python 2.6.4 and MySQL 5 versions and above. PyDumpy queries the information schema to find out the approximate count of rows available in the database tables and then uses mysqldump tool to dump each table separately. PyDumpy allows to pass external options to mysqldump by using the -e command line option.
 
-Installation & Dependencies
----------------------------
+Dependencies
+------------
 
-PyDumpy relies on MySQL for Python package to connect to mysql and query the information schema. Refer to the project home page to find installation details that suite your system. On Ubuntu it should be as simple as:
+PyDumpy relies on MySQL for Python package to connect to mysql and query the information schema. To install the package using pip:
+
+    $ pip install pymysql
+
+
+Or on Debian or Ubuntu you might just use the package from the linux distribution:
 
     $ apt-get install python-mysqldb
+
+If you are on a shared host and have not enough permissions see instructions below on how to create a local python virtualenv.
+
+Installation
+------------
 
 PyDumpy does not require any installation since it's a simple script written in Python. You can make it executable by chmoding it:
 
@@ -62,8 +72,33 @@ To dump with additional MySQL options for ex. removing comments:
 
 By default PyDumpy will output to standard output. It's possible to redirect all output using a standard pipe but then options like --ask-to-limit or --ask-to-sort won't work. Instead please use the --file option to specify the file to dump to.
 
+
+How to install a local python virtualenv in a shared hosting with python 2.7 ?
+------------------------------------------------------------------------------
+
+In a shared hosting environment it can be otherwise impossible to install the required python packages.
+
+1) Download the latest virtualenv tar.gz from https://pypi.python.org/pypi/virtualenv#downloads und untar it.
+
+2) cd into the new virtualenv.xxx/
+
+Create a new virtualenv by giving its target path as the last parameter:
+
+3) python virtualenv.py ~/private/venv
+
+To activate it:
+
+    cd ~/private/venv
+    . bin/activate
+
+The venv will have its own pip and everything. Now install the necessary packages:
+
+    pip install pymysql
+
+Just copy pydumpy.py into the venv/ folder and run it from inside the virtual environment.
+
 Contact
 -------
 
-Contact the original author (z1lv1n4s - https://github.com/z1lv1n4s) at https://code.google.com/p/pydumpy/ or via his blog: http://www.thedeveloperday.com
+Contact the original author (z1lv1n4s - https://github.com/z1lv1n4s) at https://code.google.com/p/pydumpy/
 

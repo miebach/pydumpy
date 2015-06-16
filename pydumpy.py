@@ -11,6 +11,7 @@ def getCommandLineOptions():
     
     parser = OptionParser(usage=usage, version=version)
     parser.add_option("-H", "--hostname", dest = "hostname", help = "Database hostname.", default = False)
+    parser.add_option("-P", "--port", dest = "port", help = "Database port.", default = 3306)
     parser.add_option("-u", "--username", dest = "username", help = "Database username.", default = False)
     parser.add_option("-p", "--password", dest = "password", help = "Database password.", default = False)
     parser.add_option("-n", "--name", dest = "dbname", help = "Database name.", default = False)
@@ -24,6 +25,8 @@ def getCommandLineOptions():
     parser.add_option("-d", "--dry-run", action="store_true", dest = "dryRun", help = "Output all statements without executing them.", default = False)
     
     (options, args) = parser.parse_args()
+
+    options.port = int(options.port)
 
     if options.hostname == False:
         parser.error('Use -H or --hostname to specify database hostname');
@@ -53,6 +56,7 @@ def getTableMetaData(options):
     result = []
 
     conn = MySQLdb.connect (host = options.hostname,
+                           port = options.port,
                            user = options.username,
                            passwd = options.password,
                            db = "information_schema")
@@ -80,6 +84,7 @@ def getTableColumnsMetaData(options):
     columns = {}
 
     conn = MySQLdb.connect (host = options.hostname,
+                           port = options.port,
                            user = options.username,
                            passwd = options.password,
                            db = "information_schema")
@@ -172,7 +177,7 @@ def getTableLimits(options, tables, columns):
     return limits;
 
 def getTableDumpCommand(options, limits, table):
-    mainDumpCmd = "mysqldump -h" + options.hostname + " -u" + options.username + " -p" + options.password + " " + options.dbname + " " + options.flags
+    mainDumpCmd = "mysqldump -h" + options.hostname + " --port=" + str(options.port) + " -u" + options.username + " -p" + options.password + " " + options.dbname + " " + options.flags
     
     (tableName, estimatedRows) = table
         

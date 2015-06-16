@@ -38,7 +38,9 @@ PyDumpy does not require any installation since it's a simple script written in 
 
     $ chmod +x pydumpy.py
 
-Running on the Command Line
+
+Command Line options
+--------------------
 
     $ pydumpy.py options
     -H or --hostname: MySQL database hostname. Required.
@@ -56,19 +58,19 @@ Usage Examples
 
 To dump a database to a file:
 
-    ./pydumpy -H localhost -u username -p password -n database --file=dump.sql
+    ./pydumpy.py -H localhost -u username -p password -n database --file=dump.sql
 
 To dump a maximum of 50 000 rows from each database table to standard output:
 
-    ./pydumpy -H localhost -u username -p password -n database -r 50000
+    ./pydumpy.py -H localhost -u username -p password -n database -r 50000
 
 To dump a maximum of 10 000 rows from each database table but allowing to override the setting for some tables:
 
-    ./pydumpy -H localhost -u username -p password -n database -r 50000 --ask-to-limit --file=dump.sql
+    ./pydumpy.py -H localhost -u username -p password -n database -r 50000 --ask-to-limit --file=dump.sql
 
 To dump with additional MySQL options for ex. removing comments:
 
-    ./pydumpy -H localhost -u username -p password -n database -r 10000 -e "--skip-comments"
+    ./pydumpy.py -H localhost -u username -p password -n database -r 10000 -e "--skip-comments"
 
 By default PyDumpy will output to standard output. It's possible to redirect all output using a standard pipe but then options like --ask-to-limit or --ask-to-sort won't work. Instead please use the --file option to specify the file to dump to.
 

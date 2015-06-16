@@ -47,6 +47,7 @@ Command Line options
 
     $ pydumpy.py options
     -H or --hostname: MySQL database hostname. Required.
+    -P or --port: MySQL database port. Default 3306.
     -u or --username: MySQL database username. Required.
     -p or --password: MySQL database password. Required.
     -n or --database: MySQL database name. Required.

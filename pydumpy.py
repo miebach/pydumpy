@@ -1,4 +1,10 @@
 #! /usr/bin/env python
+
+# PyDumpy - a tool for easy partial and sorted MySQL database dumping.
+#
+# Github fork: https://github.com/miebach/pydumpy
+# Original source: https://code.google.com/p/pydumpy/source/browse/trunk/src/pydumpy.py
+
 import os
 import sys
 import re

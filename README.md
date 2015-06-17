@@ -7,28 +7,33 @@ PyDumpy is a simple tool written in Python that enables easy partial and sorted 
 
 PyDumpy will dump the whole database by limiting all tables to a default value of 100 000 rows. It also provides a possibility to ask the user which tables to limit and how to sort them before dumping.
 
-Dependencies
-------------
-
-PyDumpy relies on MySQL for Python package to connect to mysql and query the information schema.
-
 Getting Started
 ---------------
 
-PyDumpy should work with Python 2.6.4 and MySQL 5 versions and above. PyDumpy queries the information schema to find out the approximate count of rows available in the database tables and then uses mysqldump tool to dump each table separately. PyDumpy allows to pass external options to mysqldump by using the -e command line option.
+PyDumpy should work with Python 2.6 and 2.7 and MySQL 5 versions. PyDumpy queries the information schema to find out the approximate count of rows available in the database tables and then uses mysqldump tool to dump each table separately. PyDumpy allows to pass external options to mysqldump by using the -e command line option.
 
-Dependencies
-------------
+Dependencies: MySQL-python
+--------------------------
 
-PyDumpy relies on MySQL for Python package to connect to mysql and query the information schema. To install the package using pip:
+PyDumpy relies on MySQL for Python package `MySQL-python`to connect to mysql and query the information schema.
+
+#### a) Precompiled Package
+
+You might want to use the precompiled package: http://www.lfd.uci.edu/~gohlke/pythonlibs/#mysql-python
+
+#### b) Installing with pip
+
+Some basic mysql and python libraries and the build tools need to be present, on Debian or Ubuntu install them with:
+
+    $ apt-get install build-essential libmysqlclient-dev python-dev
+
+Then either install the MySQL-python package using pip:
 
     $ pip install MySQL-python
 
-If it complains about a missing mysql_config, on Debian or Ubuntu run:
+#### c) Use the package of your Linux distribution
 
-    $ apt-get install libmysqlclient-dev
-
-Or on Debian or Ubuntu you might just use the package from the linux distribution:
+Alternatively you might just use the package from your linux distribution. On Debian or Ubuntu:
 
     $ apt-get install python-mysqldb
 
